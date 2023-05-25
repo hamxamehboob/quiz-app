@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quiz_app/screens/home_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
+
+import '../helpers/dialogs.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,26 +34,26 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Hello there 👋",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: size.height * .07,
               ),
-              Text(
+              const Text(
                 "Email",
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
               ),
               Form(
-                autovalidateMode: AutovalidateMode.always,
                 key: _emailKey,
                 child: TextFormField(
                   controller: _emailtextcontroller,
                   validator: emailValidate,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       hintText: "Enter your email address",
+                      hintStyle: TextStyle(color: Colors.grey),
                       enabledBorder: UnderlineInputBorder(
                           borderSide:
                               BorderSide(color: Color(0xFF7558ff), width: 2))),
@@ -57,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: size.height * .03,
               ),
-              Text(
+              const Text(
                 "Password",
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
               ),
@@ -71,6 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: _isObscure,
                   decoration: InputDecoration(
                       hintText: "Enter your password",
+                      hintStyle: const TextStyle(color: Colors.grey),
                       suffixIcon: IconButton(
                         color: const Color(0xFF7558ff),
                         icon: Icon(
@@ -84,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                       ),
-                      enabledBorder: UnderlineInputBorder(
+                      enabledBorder: const UnderlineInputBorder(
                         borderSide:
                             BorderSide(color: Color(0xFF7558ff), width: 2),
                       )),
@@ -95,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: size.width * .5),
-                child: Text(
+                child: const Text(
                   "Forgot Password?",
                   style: TextStyle(
                       color: Color(0xFF7558ff),
@@ -116,9 +122,9 @@ class _LoginPageState extends State<LoginPage> {
                       horizontal: size.width * .36,
                       vertical: size.height * .014),
                   decoration: BoxDecoration(
-                      color: Color(0xFF6949ff),
+                      color: const Color(0xFF6949ff),
                       borderRadius: BorderRadius.circular(20)),
-                  child: Text(
+                  child: const Text(
                     "Sign In",
                     style: TextStyle(
                         color: Colors.white,
@@ -158,7 +164,9 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              GoogleButton(route: () {}),
+              GoogleButton(route: () {
+                _handleGoogleSignIn();
+              }),
             ],
           ),
         ),
@@ -220,5 +228,29 @@ class _LoginPageState extends State<LoginPage> {
       } else if (e.code == 'wrong - password') {}
     }
     setState(() {});
+  }
+
+  _handleGoogleSignIn() {
+    _signInWithGoogle();
+  }
+
+  Future<UserCredential?> _signInWithGoogle() async {
+    try {
+      await InternetAddress.lookup('google.com');
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+      // return await Firebase..signInWithCredential(credential);
+    } catch (e) {
+      Dialogs.showSnackBar(
+          context, 'Something Went Wrong Check Internet Connection');
+      return null;
+    }
   }
 }
