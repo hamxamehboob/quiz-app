@@ -40,26 +40,13 @@ To install quiz app,follow these steps:
 * Run the app on your preferred emulator or physical device.
 
 ## User Story Features:
-As a user, I want to use a Quiz app to test my knowledge.
-* As a user,when i open the app, I expect to see a visually appealing splash screen with the app logo.
-* The splash screen should appear for a few seconds to provide a smooth transition to the main app.
-* After the splash screen, as a user i should be directed to the login screen.
-* On the login screen,as a user I should be able to enter my username and password.
-* As a user,I should also have the option to log in using my social media accounts, such as Google 
-* As a user,If I don't have an account, there should be a link to the signup screen.
-* As a user,If I choose to create a new account, I should be directed to the signup screen.
-* On the signup screen,as a user, I should be able to enter my desired username, email address, and password.
-* As a user,The screen should include a confirmation field for the password to avoid errors.
-* After providing the required information, I should be able to sign up and proceed to the Quiz screen.
-* As a Registered user,Once I am logged in or signed up, I expect to be taken to the Quiz screen.
-* As a Registered user,The Quiz screen should display a question and multiple options.
-* As a Registered user,I should be able to select one option as my answer.
-* As a Registered user,After submitting my answer, the screen should display whether my answer was correct or incorrect.
-* As a Registered user,The Quiz screen should provide a next button to move to the next question.
-* As a Registered user,The Quiz screen should keep track of the number of questions answered correctly and incorrectly.
-* As a Registered user,After completing the quiz or at any point during the quiz, I should have access to the tracking screen.
-* As a Registered user,The tracking screen should show my overall progress, including the number of questions answered correctly and incorrectly.
-* As a Registered user,It should also display my performance in terms of a score.
+* As a user, I want to register for a new account and log in to the app to access all the features and functionalities.
+
+* As a Registered user,I want to attempt Quiz.
+
+* As a Registered user,I want to see the tracking screen.
+
+* As a Registered user,I want to see my performance in terms of a score.
 ## System Architecture
 ![Screenshot 2023-05-24 232332](https://github.com/hamxamehboob/Quiz-App/assets/97390895/0c98097c-9bc3-4a86-82de-d5a6d5c3c855)
 
