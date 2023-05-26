@@ -42,3 +42,8 @@ To install quiz app,follow these steps:
 
 ## System Architecture
 ![Screenshot 2023-05-24 232332](https://github.com/hamxamehboob/Quiz-App/assets/97390895/0c98097c-9bc3-4a86-82de-d5a6d5c3c855)
+
+## Entity Relation Diagram
+![ERD](https://github.com/hamxamehboob/Quiz-App/assets/97390895/50b1ab9e-b165-4f11-8593-fce0f56ab9d7)
+
+
