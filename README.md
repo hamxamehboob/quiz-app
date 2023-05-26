@@ -38,8 +38,32 @@ To install quiz app,follow these steps:
 * Navigate to the project directory and run flutter pub get.
 * Set up a Firebase project and add your configuration file to the project.
 * Run the app on your preferred emulator or physical device.
-
-
+## User Story Features:
+As a user, I want to use a Quiz app to test my knowledge.The app should have the following screens:
+1. Splash Screen:
+* When I open the app, I expect to see a visually appealing splash screen with the app logo.
+* The splash screen should appear for a few seconds to provide a smooth transition to the main app.
+2. Login Screen:
+* After the splash screen, I should be directed to the login screen.
+* On the login screen, I want to be able to enter my username and password.
+* I should also have the option to log in using my social media accounts, such as Google 
+* If I don't have an account, there should be a link to the signup screen.
+3. Sign Up Screen:
+* If I choose to create a new account, I should be directed to the signup screen.
+* On the signup screen, I want to be able to enter my desired username, email address, and password.
+* The screen should include a confirmation field for the password to avoid errors.
+* After providing the required information, I should be able to sign up and proceed to the Quiz screen.
+4. Quiz Screen:
+* Once I am logged in or signed up, I expect to be taken to the Quiz screen.
+* The Quiz screen should display a question and multiple options.
+* I should be able to select one option as my answer.
+* After submitting my answer, the screen should display whether my answer was correct or incorrect.
+* The Quiz screen should provide a next button to move to the next question.
+* The Quiz screen should keep track of the number of questions answered correctly and incorrectly.
+5. Tracking Screen:
+* After completing the quiz or at any point during the quiz, I should have access to the tracking screen.
+* The tracking screen should show my overall progress, including the number of questions answered correctly and incorrectly.
+* It should also display my performance in terms of a score.
 ## System Architecture
 ![Screenshot 2023-05-24 232332](https://github.com/hamxamehboob/Quiz-App/assets/97390895/0c98097c-9bc3-4a86-82de-d5a6d5c3c855)
 
