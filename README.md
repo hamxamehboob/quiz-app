@@ -40,7 +40,7 @@ To install quiz app,follow these steps:
 * Run the app on your preferred emulator or physical device.
 
 ## User Story Features:
-As a user, I want to use a Quiz app to test my knowledge.The app should have the following screens:
+As a user, I want to use a Quiz app to test my knowledge.
 * As a user,when i open the app, I expect to see a visually appealing splash screen with the app logo.
 * The splash screen should appear for a few seconds to provide a smooth transition to the main app.
 * After the splash screen, as a user i should be directed to the login screen.
