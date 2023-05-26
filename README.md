@@ -32,7 +32,7 @@ Welcome to my Quiz App! Get ready to test your knowledge and have fun with my en
 By incorporating Firebase Authentication and Firestore, the quiz app ensures a secure login/signup process and persistent storage of user progress data. This allows users to track their progress over time and enhancing the overall user experience.
 
 ## Installation
-To install FireBlog, follow these steps:
+To install quiz app,follow these steps:
 
 * Clone the repository to your local machine.
 * Navigate to the project directory and run flutter pub get.
