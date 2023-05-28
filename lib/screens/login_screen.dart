@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: EdgeInsets.only(
               left: size.width * .07,
@@ -214,14 +215,18 @@ class _LoginPageState extends State<LoginPage> {
               email: _emailtextcontroller.text,
               password: _pwtextcontroller.text)
           .then((value) {
-        Navigator.of(context).pushReplacement(
+        print("LOGGED IN");
+        Navigator.pushReplacement(
+          context,
           MaterialPageRoute(
             builder: (_) => const HomePage(),
           ),
         );
+      }).onError((error, stackTrace) {
+        print("Error ========= ${error.toString()}");
       });
       // ignore: use_build_context_synchronously
-      Navigator.pop(context);
+      // Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {
@@ -231,7 +236,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _handleGoogleSignIn() {
-    _signInWithGoogle();
+    _signInWithGoogle().then((value) => Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: ((_) => HomePage()))));
   }
 
   Future<UserCredential?> _signInWithGoogle() async {
@@ -246,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      // return await Firebase..signInWithCredential(credential);
+      return await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
       Dialogs.showSnackBar(
           context, 'Something Went Wrong Check Internet Connection');

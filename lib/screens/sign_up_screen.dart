@@ -37,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(
+                const Center(
                   child: Text(
                     "Create an account 📝",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -46,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(
                   height: size.height * .04,
                 ),
-                Text(
+                const Text(
                   "Please enter your name,email address and password.",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
@@ -150,7 +150,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 GestureDetector(
                   onTap: () {
                     validate();
-                    login();
+                    signUp();
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
@@ -244,7 +244,7 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  void login() async {
+  void signUp() async {
     showDialog(
       context: context,
       builder: (context) {
@@ -255,28 +255,25 @@ class _SignUpPageState extends State<SignUpPage> {
     );
     try {
       await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
+          .createUserWithEmailAndPassword(
               email: _emailtextcontroller.text,
               password: _pwtextcontroller.text)
           .then((value) {
+        print("ACCOUNT CREATED");
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (_) => const HomePage(),
           ),
         );
+      }).onError((error, stackTrace) {
+        print("ERROR =============${error}");
       });
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-    } on FirebaseAuthException catch (e) {
-      Navigator.pop(context);
-      if (e.code == 'user-not-found') {
-      } else if (e.code == 'wrong - password') {}
-    }
-    setState(() {});
+    } on FirebaseAuthException catch (e) {}
   }
 
   _handleGoogleSignIn() {
-    _signInWithGoogle();
+    _signInWithGoogle().then((value) => Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: ((_) => HomePage()))));
   }
 
   Future<UserCredential?> _signInWithGoogle() async {
@@ -291,7 +288,7 @@ class _SignUpPageState extends State<SignUpPage> {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      // return await Firebase..signInWithCredential(credential);
+      return await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
       Dialogs.showSnackBar(
           context, 'Something Went Wrong Check Internet Connection');
