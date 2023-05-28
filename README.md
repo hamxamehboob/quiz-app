@@ -2,6 +2,23 @@
 
 Welcome to my Quiz App! Get ready to test your knowledge and have fun with my engaging quizzes. I've built this app using Firebase as the backend and Provider as the state management solution to provide you with a seamless and interactive experience.
 
+# ScreenShots Of Quiz App
+<table>
+  <tr>
+    <td>Splash Screen</td>
+     <td>On Board Screen</td>
+     <td>Login Screen</td>
+     <td>SignUp Screen</td>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/6a3662e1-b884-4a77-8bd7-07d29ffcc096.jpg" width="1000%"></img></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/6b1b1c32-cc46-406b-8d39-70e1c33bcdc2.jpg)" width="1000%"></img></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/15b98aaa-887e-43b8-ad10-77a469a311c6.jpg" width="1000%"></img></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/84e5c6a3-7ec7-4284-82aa-b9c76582b513.jpg" width="1000%"></img></td>
+  </tr>
+ </table>
+
+
 ## Features:
 
 1. Splash Screen:
@@ -62,10 +79,15 @@ To install quiz app,follow these steps:
 * As a Registered user,I want to see the tracking screen.
 
 * As a Registered user,I want to see my performance in terms of a score.
+
+
+ 
 ## System Architecture
 ![Screenshot 2023-05-24 232332](https://github.com/hamxamehboob/Quiz-App/assets/97390895/0c98097c-9bc3-4a86-82de-d5a6d5c3c855)
 
 ## Entity Relation Diagram
 ![ERD](https://github.com/hamxamehboob/Quiz-App/assets/97390895/50b1ab9e-b165-4f11-8593-fce0f56ab9d7)
+
+
 
 
