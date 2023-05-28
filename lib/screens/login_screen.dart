@@ -225,8 +225,6 @@ class _LoginPageState extends State<LoginPage> {
       }).onError((error, stackTrace) {
         print("Error ========= ${error.toString()}");
       });
-      // ignore: use_build_context_synchronously
-      // Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == 'user-not-found') {

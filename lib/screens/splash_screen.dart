@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:quiz_app/screens/login_screen.dart';
+import 'package:quiz_app/screens/onboard_screen.dart';
 import 'package:quiz_app/screens/sign_up_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 4)).then(
       (value) => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => const SignUpPage(),
+          builder: (_) => const OnBoardPage(),
         ),
       ),
     );
