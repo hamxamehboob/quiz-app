@@ -76,7 +76,7 @@ To install quiz app,follow these steps:
 
 * As a Registered user,I want to attempt Quiz.
 
-* As a Registered user,I want to see the tracking screen.
+* As a Registered user,I want to see my tracks of quiz which i attempted.
 
 * As a Registered user,I want to see my performance in terms of a score.
 
