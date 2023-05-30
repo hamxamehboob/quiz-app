@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz_app/firebase_service/auth_service.dart';
 import 'package:quiz_app/firebase_options.dart';
-import 'package:quiz_app/screens/sign_up_screen.dart';
 import 'package:quiz_app/screens/splash_screen.dart';
 
 void main() {
@@ -14,9 +15,12 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+    return MultiProvider(
+      providers: [Provider<AuthService>(create: (_) => AuthService())],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     );
   }
 }

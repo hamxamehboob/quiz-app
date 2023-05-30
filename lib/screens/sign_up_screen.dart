@@ -266,14 +266,14 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         );
       }).onError((error, stackTrace) {
-        print("ERROR =============${error}");
+        print("ERROR =============$error");
       });
-    } on FirebaseAuthException catch (e) {}
+    } on FirebaseAuthException {}
   }
 
   _handleGoogleSignIn() {
     _signInWithGoogle().then((value) => Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: ((_) => HomePage()))));
+        context, MaterialPageRoute(builder: ((_) => const HomePage()))));
   }
 
   Future<UserCredential?> _signInWithGoogle() async {

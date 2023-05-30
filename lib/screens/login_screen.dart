@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz_app/firebase_service/auth_service.dart';
 import 'package:quiz_app/screens/home_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
@@ -23,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _pwtextcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -224,6 +227,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       }).onError((error, stackTrace) {
         print("Error ========= ${error.toString()}");
+        Navigator.pop(context);
       });
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
@@ -235,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _handleGoogleSignIn() {
     _signInWithGoogle().then((value) => Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: ((_) => HomePage()))));
+        context, MaterialPageRoute(builder: ((_) => const HomePage()))));
   }
 
   Future<UserCredential?> _signInWithGoogle() async {

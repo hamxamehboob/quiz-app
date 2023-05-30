@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:quiz_app/screens/login_screen.dart';
 import 'package:quiz_app/screens/onboard_screen.dart';
-import 'package:quiz_app/screens/sign_up_screen.dart';
+
+import '../helpers/auth_wrapper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
