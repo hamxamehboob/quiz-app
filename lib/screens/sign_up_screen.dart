@@ -3,10 +3,11 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:quiz_app/screens/home_screen.dart';
+import 'package:quiz_app/screens/quiz_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
 import '../helpers/dialogs.dart';
+import 'home_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});

@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:quiz_app/firebase_service/auth_service.dart';
-import 'package:quiz_app/screens/home_screen.dart';
+import 'package:quiz_app/screens/quiz_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
 import '../helpers/dialogs.dart';
+import 'home_screen.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
