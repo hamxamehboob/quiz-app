@@ -16,7 +16,6 @@ dependencies:
   provider: ^6.0.5
   smooth_page_indicator: ^1.1.0
   cloud_firestore: ^4.7.1
-  random_string:
 
 dev_dependencies:
   flutter_test:

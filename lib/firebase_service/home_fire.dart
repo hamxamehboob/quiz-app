@@ -9,13 +9,11 @@ class HomeFire {
         .then((querySnapshot) {
       querySnapshot.docs.forEach((quiz) {
         Map<String, dynamic> myQuiz = quiz.data();
-        myQuiz["Quizid"] = quiz.reference.id;
+        myQuiz['QuizId'] = quiz.reference.id;
         print(quiz.data());
-
-        all_quiz.add(myQuiz);
+        all_quiz.add(quiz.data());
       });
     });
-
     return all_quiz;
   }
 }

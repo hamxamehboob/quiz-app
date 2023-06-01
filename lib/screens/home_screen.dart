@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 import '../firebase_service/home_fire.dart';
@@ -11,13 +13,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late List quizzes = [];
-  getquiz() async {
-    await HomeFire.getquizzes().then((returned_quizzes) {
-      setState(() {
-        quizzes = returned_quizzes;
-      });
+  Future<dynamic> getquiz() async {
+    var returrnedQuiz = await HomeFire.getquizzes().then((returned_quizzes) {
+      return returned_quizzes;
     });
+    return returrnedQuiz;
   }
 
   @override
@@ -33,21 +33,41 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          HomePageQuizCart(
-            imageurl: '',
+          FutureBuilder(
+            future: getquiz(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return HomePageQuizCart(
+                      imageurl: snapshot.data[1]['quiz_thumbnail'],
+                    );
+                  },
+                  itemCount: snapshot.data.length,
+                  shrinkWrap: true,
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
           ),
-          HomePageQuizCart(
-            imageurl: '',
-          ),
-          HomePageQuizCart(
-            imageurl: '',
-          ),
-          HomePageQuizCart(
-            imageurl: '',
-          ),
-          HomePageQuizCart(
-            imageurl: '',
-          ),
+          // HomePageQuizCart(
+          //   imageurl: '',
+          // ),
+          // HomePageQuizCart(
+          //   imageurl: '',
+          // ),
+          // HomePageQuizCart(
+          //   imageurl: '',
+          // ),
+          // HomePageQuizCart(
+          //   imageurl: '',
+          // ),
+          // HomePageQuizCart(
+          //   imageurl: '',
+          // ),
         ],
       ),
     ));

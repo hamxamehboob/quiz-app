@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/firebase_service/home_fire.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({super.key});
+  QuizPage({
+    super.key,
+  });
 
   @override
   State<QuizPage> createState() => _HomePageState();
