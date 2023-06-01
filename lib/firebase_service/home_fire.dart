@@ -10,7 +10,7 @@ class HomeFire {
       querySnapshot.docs.forEach((quiz) {
         Map<String, dynamic> myQuiz = quiz.data();
         myQuiz['QuizId'] = quiz.reference.id;
-        print(quiz.data());
+        // print(quiz.data());
         all_quiz.add(quiz.data());
       });
     });

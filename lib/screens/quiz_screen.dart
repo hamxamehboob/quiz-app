@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/firebase_service/home_fire.dart';
+import 'package:quiz_app/firebase_service/quiz_questions.dart';
+
+import '../models/questions.dart';
 
 class QuizPage extends StatefulWidget {
+  String QuizId;
   QuizPage({
+    required this.QuizId,
     super.key,
   });
 
@@ -11,6 +16,33 @@ class QuizPage extends StatefulWidget {
 }
 
 class _HomePageState extends State<QuizPage> {
+  Questions questionModel = new Questions();
+  genQue() async {
+    QuizQuestions.generateQuizQue("Flutter").then((queData) {
+      setState(() {
+        questionModel.questions = queData["questions"];
+        questionModel.correctAns = queData["correct_answer"];
+        List options = [
+          queData["option1"],
+          queData["option2"],
+          queData["option3"],
+          queData["option4"],
+        ];
+        options.shuffle();
+        questionModel.option1 = options[0];
+        questionModel.option2 = options[1];
+        questionModel.option3 = options[2];
+        questionModel.option4 = options[3];
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    genQue();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +87,8 @@ class _HomePageState extends State<QuizPage> {
               margin: const EdgeInsets.all(17),
               decoration: BoxDecoration(
                   color: Colors.black, borderRadius: BorderRadius.circular(20)),
-              child: const Text(
-                "Which of the Following is use for Cross Platform Application making? ",
+              child: Text(
+                questionModel.questions,
                 style: TextStyle(fontSize: 22, color: Colors.white),
                 textAlign: TextAlign.center,
               )),
@@ -70,8 +102,8 @@ class _HomePageState extends State<QuizPage> {
               decoration: BoxDecoration(
                   color: Colors.red.withOpacity(0.8),
                   borderRadius: BorderRadius.circular(34)),
-              child: const Text(
-                "A. C++",
+              child: Text(
+                "A. ${questionModel.option1}",
                 style: TextStyle(
                     fontSize: 17,
                     color: Colors.white,

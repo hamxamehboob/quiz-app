@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
 
+import '../firebase_service/quiz_questions.dart';
+
 class QuizIntro extends StatefulWidget {
   String quizName;
   String quizImgUrl;
@@ -36,9 +38,13 @@ class _QuizIntroState extends State<QuizIntro> {
           "START QUIZ",
           style: TextStyle(fontSize: 20),
         ),
-        onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => QuizPage()));
+        onPressed: () async {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => QuizPage(
+                        QuizId: widget.quizId,
+                      )));
         },
       ),
       appBar: AppBar(

@@ -14,8 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<dynamic> getquiz() async {
-    var returrnedQuiz = await HomeFire.getquizzes().then((returned_quizzes) {
-      return returned_quizzes;
+    var returrnedQuiz = await HomeFire.getquizzes().then((returnedQuizzes) {
+      return returnedQuizzes;
     });
     return returrnedQuiz;
   }
@@ -53,21 +53,6 @@ class _HomePageState extends State<HomePage> {
               }
             },
           ),
-          // HomePageQuizCart(
-          //   imageurl: '',
-          // ),
-          // HomePageQuizCart(
-          //   imageurl: '',
-          // ),
-          // HomePageQuizCart(
-          //   imageurl: '',
-          // ),
-          // HomePageQuizCart(
-          //   imageurl: '',
-          // ),
-          // HomePageQuizCart(
-          //   imageurl: '',
-          // ),
         ],
       ),
     ));
