@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class QuizQuestions {
-  static generateQuizQue(String quizId) async {
+  static Future<dynamic> generateQuizQue(String quizId) async {
     late Map queData;
     await FirebaseFirestore.instance
         .collection("quizzes")

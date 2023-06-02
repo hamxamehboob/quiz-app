@@ -88,7 +88,7 @@ class _HomePageState extends State<QuizPage> {
               decoration: BoxDecoration(
                   color: Colors.black, borderRadius: BorderRadius.circular(20)),
               child: Text(
-                questionModel.questions,
+                "questionModel.questions",
                 style: TextStyle(fontSize: 22, color: Colors.white),
                 textAlign: TextAlign.center,
               )),
