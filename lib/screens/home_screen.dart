@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> {
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     return HomePageQuizCart(
+
                       imageurl: snapshot.data[index]['quiz_thumbnail'],
                     );
                   },

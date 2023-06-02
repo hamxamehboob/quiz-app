@@ -16,25 +16,23 @@ class QuizPage extends StatefulWidget {
 }
 
 class _HomePageState extends State<QuizPage> {
-  Questions questionModel = new Questions();
-  genQue() async {
-    QuizQuestions.generateQuizQue("Flutter").then((queData) {
-      setState(() {
-        questionModel.questions = queData["questions"];
-        questionModel.correctAns = queData["correct_answer"];
-        List options = [
-          queData["option1"],
-          queData["option2"],
-          queData["option3"],
-          queData["option4"],
-        ];
-        options.shuffle();
-        questionModel.option1 = options[0];
-        questionModel.option2 = options[1];
-        questionModel.option3 = options[2];
-        questionModel.option4 = options[3];
-      });
-    });
+  // Questions questionModel = new Questions();
+  Future genQue() async {
+    var ques=[];
+    ques=await QuizQuestions.getQuestionsList("Flutter");
+
+    if(ques.isEmpty){
+      return [{
+        "question": "EMPTY",
+        "correct_answer": "EMPTY",
+        "option1": "EMPTY",
+        "option2": "EMPTY",
+        "option3": "EMPTY",
+        "option4": "EMPTY",
+      }];
+    }
+    return ques;
+
   }
 
   @override
@@ -54,108 +52,121 @@ class _HomePageState extends State<QuizPage> {
         ),
         onPressed: () {},
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // const SizedBox(
-          //   height: 100,
-          //   width: 100,
-          //   child: Stack(
-          //     fit: StackFit.expand,
-          //     children: [
-          //       CircularProgressIndicator(
-          //         strokeWidth: 12,
-          //         backgroundColor: Colors.green,
-          //       ),
-          //       Center(
-          //           child: Text(
-          //         "46",
-          //         style: TextStyle(
-          //             fontSize: 45,
-          //             fontWeight: FontWeight.bold,
-          //             color: Colors.white),
-          //       ))
-          //     ],
-          //   ),
-          // ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
-              padding: const EdgeInsets.all(14),
-              margin: const EdgeInsets.all(17),
-              decoration: BoxDecoration(
-                  color: Colors.black, borderRadius: BorderRadius.circular(20)),
-              child: Text(
-                "questionModel.questions",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-                textAlign: TextAlign.center,
-              )),
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(14),
-              margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-              decoration: BoxDecoration(
-                  color: Colors.red.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(34)),
-              child: Text(
-                "A. ${questionModel.option1}",
-                style: TextStyle(
-                    fontSize: 17,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              )),
-          Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(14),
-              margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-              decoration: BoxDecoration(
-                  color: Colors.green.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(34)),
-              child: const Text(
-                "B. Flutter",
-                style: TextStyle(
-                    fontSize: 17,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              )),
-          Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(14),
-              margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-              decoration: BoxDecoration(
-                  color: Colors.yellow.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(34)),
-              child: const Text(
-                "C. Photoshop",
-                style: TextStyle(
-                    fontSize: 17,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              )),
-          Container(
-              width: MediaQuery.of(context).size.width,
-              padding: const EdgeInsets.all(14),
-              margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-              decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(34)),
-              child: const Text(
-                "D. Enginnering",
-                style: TextStyle(
-                    fontSize: 17,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              )),
-        ],
+      body: FutureBuilder(
+        future: genQue(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // const SizedBox(
+            //   height: 100,
+            //   width: 100,
+            //   child: Stack(
+            //     fit: StackFit.expand,
+            //     children: [
+            //       CircularProgressIndicator(
+            //         strokeWidth: 12,
+            //         backgroundColor: Colors.green,
+            //       ),
+            //       Center(
+            //           child: Text(
+            //         "46",
+            //         style: TextStyle(
+            //             fontSize: 45,
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.white),
+            //       ))
+            //     ],
+            //   ),
+            // ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+                padding: const EdgeInsets.all(14),
+                margin: const EdgeInsets.all(17),
+                decoration: BoxDecoration(
+                    color: Colors.black, borderRadius: BorderRadius.circular(20)),
+                child: Text(
+                  // "questionModel.questions",
+                  snapshot.data[0]["question"].toString()??'',
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  textAlign: TextAlign.center,
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(14),
+                margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.red.withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(34)),
+                child: Text(
+                  "A. ${snapshot.data[0]["option1"].toString()??''}",
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                )),
+            Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(14),
+                margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.green.withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(34)),
+                child:  Text(
+                  "B. ${snapshot.data[0]["option2"].toString()??''}",
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                )),
+            Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(14),
+                margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.yellow.withOpacity(0.8),
+                    borderRadius: BorderRadius.circular(34)),
+                child:  Text(
+                  "C. ${snapshot.data[0]["option3"].toString()??''}",
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                )),
+            Container(
+                width: MediaQuery.of(context).size.width,
+                padding: const EdgeInsets.all(14),
+                margin: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+                decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(34)),
+                child:  Text(
+                  "D. ${snapshot.data[0]["option4"].toString()??''}",
+                  style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                )),
+          ],
+        );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
     );
   }
