@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/screens/quiz_screen.dart';
 
-import '../firebase_service/quiz_questions.dart';
-
+// ignore: must_be_immutable
 class QuizIntro extends StatefulWidget {
   String quizName;
   String quizImgUrl;
@@ -34,7 +33,7 @@ class _QuizIntroState extends State<QuizIntro> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ElevatedButton(
-        child: Text(
+        child: const Text(
           "START QUIZ",
           style: TextStyle(fontSize: 20),
         ),
@@ -43,22 +42,22 @@ class _QuizIntroState extends State<QuizIntro> {
               context,
               MaterialPageRoute(
                   builder: (_) => QuizPage(
-                        QuizId: widget.quizId,
+                        quizId: widget.quizId,
                       )));
         },
       ),
       appBar: AppBar(
-        title: Text("Quiz App"),
+        title: const Text("Quiz App"),
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(bottom: 40),
+          padding: const EdgeInsets.only(bottom: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -66,8 +65,8 @@ class _QuizIntroState extends State<QuizIntro> {
                     Text(
                       widget.quizName,
                       textAlign: TextAlign.center,
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+                      style: const TextStyle(
+                          fontSize: 30, fontWeight: FontWeight.w500),
                     )
                   ],
                 ),
@@ -79,11 +78,11 @@ class _QuizIntroState extends State<QuizIntro> {
                 width: MediaQuery.of(context).size.width,
               ),
               Container(
-                padding: EdgeInsets.all(18),
+                padding: const EdgeInsets.all(18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.topic_outlined),
                         SizedBox(
@@ -98,17 +97,17 @@ class _QuizIntroState extends State<QuizIntro> {
                     ),
                     Text(
                       widget.quizTopics,
-                      style: TextStyle(fontSize: 17),
+                      style: const TextStyle(fontSize: 17),
                     )
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(18),
+                padding: const EdgeInsets.all(18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.topic_outlined),
                         SizedBox(
@@ -124,17 +123,17 @@ class _QuizIntroState extends State<QuizIntro> {
                     Text(
                       "${widget.quizDuration} Minutes",
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontSize: 17),
+                      style: const TextStyle(fontSize: 17),
                     )
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(18),
+                padding: const EdgeInsets.all(18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.topic_outlined),
                         SizedBox(
@@ -149,7 +148,7 @@ class _QuizIntroState extends State<QuizIntro> {
                     ),
                     Text(
                       widget.quizAbout,
-                      style: TextStyle(fontSize: 17),
+                      style: const TextStyle(fontSize: 17),
                     )
                   ],
                 ),

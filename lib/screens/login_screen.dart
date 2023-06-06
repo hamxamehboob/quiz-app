@@ -3,9 +3,6 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:provider/provider.dart';
-import 'package:quiz_app/firebase_service/auth_service.dart';
-import 'package:quiz_app/screens/quiz_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
 import '../helpers/dialogs.dart';
@@ -26,7 +23,6 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _pwtextcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final authService = Provider.of<AuthService>(context);
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -219,7 +215,6 @@ class _LoginPageState extends State<LoginPage> {
               email: _emailtextcontroller.text,
               password: _pwtextcontroller.text)
           .then((value) {
-        print("LOGGED IN");
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -227,7 +222,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       }).onError((error, stackTrace) {
-        print("Error ========= ${error.toString()}");
         Navigator.pop(context);
       });
     } on FirebaseAuthException catch (e) {

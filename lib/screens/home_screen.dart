@@ -1,62 +1,69 @@
-// import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 import '../firebase_service/home_fire.dart';
 import '../widgets/home_screen_quiz.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<dynamic> getquiz() async {
-    var returrnedQuiz = await HomeFire.getquizzes().then((returnedQuizzes) {
-      return returnedQuizzes;
-    });
-    return returrnedQuiz;
-  }
+  late Future<List<dynamic>> quizzesFuture;
 
   @override
   void initState() {
     super.initState();
-    getquiz();
+    quizzesFuture = HomeFire.getquizzes();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+      child: Scaffold(
         body: SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          FutureBuilder(
-            future: getquiz(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return ListView.builder(
-                  itemBuilder: (context, index) {
-                    return HomePageQuizCart(
-                      imageurl: snapshot.data[index]['quiz_thumbnail'],
-                      description: snapshot.data[index]['about_quiz'],
-                      title: snapshot.data[index]['quiz_name'],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              FutureBuilder<List<dynamic>>(
+                future: quizzesFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: LinearProgressIndicator(),
                     );
-                  },
-                  itemCount: snapshot.data.length,
-                  shrinkWrap: true,
-                );
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
+                  } else if (snapshot.hasError) {
+                    return const Center(
+                      child: Text('Error occurred while fetching quizzes.'),
+                    );
+                  } else if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemBuilder: (context, index) {
+                        return HomePageQuizCart(
+                          imageurl: snapshot.data![index]['quiz_thumbnail'],
+                          description: snapshot.data![index]['about_quiz'],
+                          title: snapshot.data![index]['quiz_name'],
+                          quizId: snapshot.data![index]['quiz_id'],
+                          duration: snapshot.data![index]['duration'],
+                          topic: snapshot.data![index]['topics'],
+                        );
+                      },
+                      itemCount: snapshot.data!.length,
+                      shrinkWrap: true,
+                    );
+                  } else {
+                    return const Center(
+                      child: Text('No quizzes found.'),
+                    );
+                  }
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }
