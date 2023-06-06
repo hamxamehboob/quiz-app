@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/firebase_service/quiz_questions.dart';
+import 'home_screen.dart';
 import 'winning_screen.dart';
 
 class QuizPage extends StatefulWidget {
@@ -17,7 +18,7 @@ class _HomePageState extends State<QuizPage> {
   // Questions questionModel = new Questions();
   Future genQue() async {
     var ques = [];
-    ques = await QuizQuestions.getQuestionsList("Flutter");
+    ques = await QuizQuestions.getQuestionsList("RSwH0d2yfC7yiLprJYSq");
     var randomQuestions = (ques..shuffle()).sublist(0, 2);
     if (ques.isEmpty) {
       return [
@@ -40,6 +41,11 @@ class _HomePageState extends State<QuizPage> {
     genQue();
   }
 
+  bool opt_A_locked = false;
+  bool opt_B_locked = false;
+  bool opt_C_locked = false;
+  bool opt_D_locked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +55,10 @@ class _HomePageState extends State<QuizPage> {
           "QUIT GAME",
           style: TextStyle(fontSize: 27),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (_) => HomePage()));
+        },
       ),
       body: FutureBuilder(
         future: genQue(),

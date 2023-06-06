@@ -5,11 +5,11 @@ class QuizQuestions {
     List<dynamic> allData = [];
     await FirebaseFirestore.instance
         .collection("quizzes")
-        .doc("Flutter")
+        .doc(quizId)
         .collection("Questions")
         .get()
         .then((value) {
-       allData = value.docs.map((doc) => doc.data()).toList();
+      allData = value.docs.map((doc) => doc.data()).toList();
       // print("ALL DATA ========= ${allData}");
       print("ALL DATA LENGTH ========= ${allData.length}");
       // quizData = value.docs.elementAt(0).data();

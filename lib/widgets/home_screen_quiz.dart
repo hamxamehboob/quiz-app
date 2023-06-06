@@ -5,7 +5,13 @@ import '../screens/quiz_intro.dart';
 
 class HomePageQuizCart extends StatefulWidget {
   final String imageurl;
-  const HomePageQuizCart({super.key, required this.imageurl});
+  final String title;
+  final String description;
+  const HomePageQuizCart(
+      {super.key,
+      required this.imageurl,
+      required this.title,
+      required this.description});
 
   @override
   State<HomePageQuizCart> createState() => _HomePageQuizCartState();
@@ -37,12 +43,12 @@ class _HomePageQuizCartState extends State<HomePageQuizCart> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) => QuizIntro(
-                            quizAbout: snapshot.data[1]["about_quiz"],
-                            quizDuration: snapshot.data[1]["duration"],
+                            quizAbout: snapshot.data[0]["about_quiz"],
+                            quizDuration: snapshot.data[0]["duration"],
                             quizId: 'snapshot.data[0]["About_quiz"],',
-                            quizImgUrl: snapshot.data[1]["quiz_thumbnail"],
-                            quizName: snapshot.data[1]["quiz_name"],
-                            quizTopics: snapshot.data[1]["topics"],
+                            quizImgUrl: snapshot.data[0]["quiz_thumbnail"],
+                            quizName: snapshot.data[0]["quiz_name"],
+                            quizTopics: snapshot.data[0]["topics"],
                           )));
                 },
                 child: Container(
@@ -64,7 +70,8 @@ class _HomePageQuizCartState extends State<HomePageQuizCart> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  snapshot.data[1]["quiz_name"],
+                                  // snapshot.data[1]["quiz_name"],
+                                  widget.title,
                                   style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.white,
@@ -74,7 +81,8 @@ class _HomePageQuizCartState extends State<HomePageQuizCart> {
                                   height: 4,
                                 ),
                                 Text(
-                                  snapshot.data[2]["about_quiz"],
+                                  // snapshot.data[2]["about_quiz"],
+                                  widget.description,
                                   style: TextStyle(
                                       fontSize: 13,
                                       color: Colors.white,
