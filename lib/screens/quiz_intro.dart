@@ -9,8 +9,11 @@ class QuizIntro extends StatefulWidget {
   String quizDuration;
   String quizAbout;
   String quizId;
+  String instructions;
+
   QuizIntro(
       {super.key,
+      required this.instructions,
       required this.quizAbout,
       required this.quizDuration,
       required this.quizImgUrl,
@@ -34,7 +37,8 @@ class _QuizIntroState extends State<QuizIntro> {
       child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF7558ff)),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF7558ff)),
           child: const Text(
             "START QUIZ",
             style: TextStyle(fontSize: 20),
@@ -49,7 +53,7 @@ class _QuizIntroState extends State<QuizIntro> {
           },
         ),
         appBar: AppBar(
-          backgroundColor: Color(0xFF7558ff),
+          backgroundColor: const Color(0xFF7558ff),
           title: const Text("Quiz App"),
         ),
         body: SingleChildScrollView(
@@ -143,14 +147,14 @@ class _QuizIntroState extends State<QuizIntro> {
                             width: 6,
                           ),
                           Text(
-                            "About Quiz -",
+                            "Instructions -",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
                       Text(
-                        widget.quizAbout,
+                        widget.instructions,
                         style: const TextStyle(fontSize: 17),
                       )
                     ],

@@ -58,7 +58,7 @@ class _WinPageState extends State<WinPage> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF7558ff)),
-                  child: const Text("Next"),
+                  child: const Text("Back to Home Screen"),
                   onPressed: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (_) => const HomePage()));

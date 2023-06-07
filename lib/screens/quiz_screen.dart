@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/firebase_service/quiz_questions.dart';
-import 'home_screen.dart';
+import '../helpers/dialogs.dart';
+import 'lost_screen.dart';
 import 'winning_screen.dart';
 
 class QuizPage extends StatefulWidget {
@@ -15,6 +16,10 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Map<String, dynamic>> questions = [];
   int currentQuestionIndex = 0;
+  Color optionAColor = Colors.black.withOpacity(0.4);
+  Color optionBColor = Colors.black.withOpacity(0.4);
+  Color optionCColor = Colors.black.withOpacity(0.4);
+  Color optionDColor = Colors.black.withOpacity(0.4);
 
   @override
   void initState() {
@@ -34,21 +39,61 @@ class _QuizPageState extends State<QuizPage> {
     final correctAnswer = currentQuestion['correct_answer'];
 
     if (selectedOption == correctAnswer) {
-      if (currentQuestionIndex == questions.length - 1) {
+      setState(() {
+        if (selectedOption ==
+            questions[currentQuestionIndex]["option1"].toString()) {
+          optionAColor = Colors.green;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option2"].toString()) {
+          optionBColor = Colors.green;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option3"].toString()) {
+          optionCColor = Colors.green;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option4"].toString()) {
+          optionDColor = Colors.green;
+        }
+      });
+
+      Future.delayed(const Duration(seconds: 1), () {
+        if (currentQuestionIndex == questions.length - 1) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const WinPage()),
+          );
+        } else {
+          setState(() {
+            currentQuestionIndex++;
+            optionAColor = Colors.black.withOpacity(0.4);
+            optionBColor = Colors.black.withOpacity(0.4);
+            optionCColor = Colors.black.withOpacity(0.4);
+            optionDColor = Colors.black.withOpacity(0.4);
+          });
+        }
+      });
+    } else {
+      setState(() {
+        if (selectedOption ==
+            questions[currentQuestionIndex]["option1"].toString()) {
+          optionAColor = Colors.red;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option2"].toString()) {
+          optionBColor = Colors.red;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option3"].toString()) {
+          optionCColor = Colors.red;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option4"].toString()) {
+          optionDColor = Colors.red;
+        }
+      });
+
+      Future.delayed(const Duration(seconds: 1), () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const WinPage()),
+          MaterialPageRoute(builder: (_) => const LoserPage()),
         );
-      } else {
-        setState(() {
-          currentQuestionIndex++;
-        });
-      }
-    } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const HomePage()),
-      );
+      });
     }
   }
 
@@ -58,25 +103,28 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         floatingActionButton: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF7558ff)),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF7558ff)),
           child: const Text(
             "QUIT GAME",
             style: TextStyle(fontSize: 27),
           ),
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
-            );
+            Dialogs.showQuitGameDialog(context);
           },
         ),
         body: questions.isEmpty
-            ? Center(child: const CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 20),
+                  Text(
+                    'Question: ${currentQuestionIndex + 1}',
+                    style: const TextStyle(
+                        fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
                   Container(
                     padding: const EdgeInsets.all(14),
                     margin: const EdgeInsets.all(17),
@@ -102,7 +150,7 @@ class _QuizPageState extends State<QuizPage> {
                       margin: const EdgeInsets.symmetric(
                           horizontal: 17, vertical: 5),
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.8),
+                        color: optionAColor,
                         borderRadius: BorderRadius.circular(34),
                       ),
                       child: Text(
@@ -122,21 +170,24 @@ class _QuizPageState extends State<QuizPage> {
                           .toString());
                     },
                     child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.all(14),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 17, vertical: 5),
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.4),
-                            borderRadius: BorderRadius.circular(34)),
-                        child: Text(
-                          "B. ${questions[currentQuestionIndex]["option2"].toString()}",
-                          style: TextStyle(
-                              fontSize: 17,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        )),
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.all(14),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 17, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: optionBColor,
+                        borderRadius: BorderRadius.circular(34),
+                      ),
+                      child: Text(
+                        "B. ${questions[currentQuestionIndex]["option2"].toString()}",
+                        style: const TextStyle(
+                          fontSize: 17,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -144,21 +195,24 @@ class _QuizPageState extends State<QuizPage> {
                           .toString());
                     },
                     child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.all(14),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 17, vertical: 5),
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.8),
-                            borderRadius: BorderRadius.circular(34)),
-                        child: Text(
-                          "C. ${questions[currentQuestionIndex]["option3"].toString()}",
-                          style: TextStyle(
-                              fontSize: 17,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        )),
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.all(14),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 17, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: optionCColor,
+                        borderRadius: BorderRadius.circular(34),
+                      ),
+                      child: Text(
+                        "C. ${questions[currentQuestionIndex]["option3"].toString()}",
+                        style: const TextStyle(
+                          fontSize: 17,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -166,21 +220,24 @@ class _QuizPageState extends State<QuizPage> {
                           .toString());
                     },
                     child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        padding: const EdgeInsets.all(14),
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 17, vertical: 5),
-                        decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.4),
-                            borderRadius: BorderRadius.circular(34)),
-                        child: Text(
-                          "D. ${questions[currentQuestionIndex]["option4"].toString()}",
-                          style: const TextStyle(
-                              fontSize: 17,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        )),
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.all(14),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 17, vertical: 5),
+                      decoration: BoxDecoration(
+                        color: optionDColor,
+                        borderRadius: BorderRadius.circular(34),
+                      ),
+                      child: Text(
+                        "D. ${questions[currentQuestionIndex]["option4"].toString()}",
+                        style: const TextStyle(
+                          fontSize: 17,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ),
                 ],
               ),

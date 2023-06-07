@@ -8,10 +8,12 @@ class HomePageQuizCart extends StatelessWidget {
   final String quizId;
   final String topic;
   final String duration;
+  final String instructions;
 
   const HomePageQuizCart({
     Key? key,
     required this.imageurl,
+    required this.instructions,
     required this.title,
     required this.description,
     required this.quizId,
@@ -34,6 +36,7 @@ class HomePageQuizCart extends StatelessWidget {
                 quizName: title,
                 quizDuration: duration,
                 quizTopics: topic,
+                instructions: instructions,
               ),
             ),
           );
@@ -59,7 +62,7 @@ class HomePageQuizCart extends StatelessWidget {
                         Text(
                           title,
                           style: const TextStyle(
-                            fontSize: 18,
+                            fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                           ),
@@ -67,10 +70,10 @@ class HomePageQuizCart extends StatelessWidget {
                         const SizedBox(height: 4),
                         Text(
                           description,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white.withOpacity(0.8),
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ],
