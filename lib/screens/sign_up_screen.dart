@@ -7,6 +7,7 @@ import 'package:quiz_app/widgets/google_button.dart';
 
 import '../helpers/dialogs.dart';
 import 'home_screen.dart';
+import 'onboard_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -37,6 +38,13 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                GestureDetector(
+                    onTap: () => Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) => const OnBoardPage())),
+                    child: const Icon(Icons.arrow_back_ios)),
+                SizedBox(
+                  height: size.height * .03,
+                ),
                 const Center(
                   child: Text(
                     "Create an account 📝",
@@ -254,26 +262,53 @@ class _SignUpPageState extends State<SignUpPage> {
       },
     );
     try {
-      await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: _emailtextcontroller.text,
-              password: _pwtextcontroller.text)
-          .then((value) {
-        print("ACCOUNT CREATED");
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (_) => const HomePage(),
-          ),
-        );
-      }).onError((error, stackTrace) {
-        print("ERROR =============$error");
-      });
-    } on FirebaseAuthException {}
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailtextcontroller.text, password: _pwtextcontroller.text);
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (_) => const HomePage(),
+        ),
+      );
+    } catch (e) {
+      Navigator.pop(context);
+
+      String errorMessage = 'An error occurred. Please try again.';
+
+      if (e is FirebaseAuthException) {
+        if (e.code == 'weak-password') {
+          errorMessage =
+              'Password is too weak. Please choose a stronger password.';
+        } else if (e.code == 'email-already-in-use') {
+          errorMessage =
+              'Email is already in use. Please choose a different email.';
+        }
+      }
+      Dialogs.showSnackBar(context, errorMessage);
+    }
+
+    setState(() {});
   }
 
   _handleGoogleSignIn() {
-    _signInWithGoogle().then((value) => Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: ((_) => const HomePage()))));
+    Dialogs.showProgressBar(context);
+    _signInWithGoogle().then((value) {
+      if (value != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomePage()),
+        );
+      } else {
+        Dialogs.showSnackBar(
+          context,
+          'Something Went Wrong. Check Internet Connection',
+        );
+      }
+    }).catchError((error) {
+      Dialogs.showSnackBar(
+        context,
+        'Something Went Wrong. Check Internet Connection',
+      );
+    });
   }
 
   Future<UserCredential?> _signInWithGoogle() async {
@@ -290,9 +325,7 @@ class _SignUpPageState extends State<SignUpPage> {
       );
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
-      Dialogs.showSnackBar(
-          context, 'Something Went Wrong Check Internet Connection');
-      return null;
+      throw Exception('No Internet Connection');
     }
   }
 }

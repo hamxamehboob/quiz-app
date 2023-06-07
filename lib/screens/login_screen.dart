@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:quiz_app/screens/onboard_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
 import '../helpers/dialogs.dart';
@@ -30,11 +31,18 @@ class _LoginPageState extends State<LoginPage> {
         body: Padding(
           padding: EdgeInsets.only(
               left: size.width * .07,
-              top: size.height * .1,
+              top: size.height * .03,
               right: size.height * .04),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              GestureDetector(
+                  onTap: () => Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (_) => OnBoardPage())),
+                  child: Icon(Icons.arrow_back_ios)),
+              SizedBox(
+                height: size.height * .03,
+              ),
               const Text(
                 "Hello there 👋",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -201,6 +209,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void login() async {
+    FocusScope.of(context).unfocus();
     showDialog(
       context: context,
       builder: (context) {
@@ -209,32 +218,56 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
+
     try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: _emailtextcontroller.text,
-              password: _pwtextcontroller.text)
-          .then((value) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const HomePage(),
-          ),
-        );
-      }).onError((error, stackTrace) {
-        Navigator.pop(context);
-      });
-    } on FirebaseAuthException catch (e) {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailtextcontroller.text, password: _pwtextcontroller.text);
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const HomePage(),
+        ),
+      );
+    } catch (e) {
       Navigator.pop(context);
-      if (e.code == 'user-not-found') {
-      } else if (e.code == 'wrong - password') {}
+
+      String errorMessage = 'An error occurred. Please try again.';
+
+      if (e is FirebaseAuthException) {
+        if (e.code == 'user-not-found') {
+          errorMessage = 'User not found. Please check your email.';
+        } else if (e.code == 'wrong-password') {
+          errorMessage = 'Wrong password. Please try again.';
+        }
+      }
+
+      Dialogs.showSnackBar(context, errorMessage);
     }
+
     setState(() {});
   }
 
   _handleGoogleSignIn() {
-    _signInWithGoogle().then((value) => Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: ((_) => const HomePage()))));
+    Dialogs.showProgressBar(context);
+    _signInWithGoogle().then((value) {
+      if (value != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const HomePage()),
+        );
+      } else {
+        Dialogs.showSnackBar(
+          context,
+          'Something Went Wrong. Check Internet Connection',
+        );
+      }
+    }).catchError((error) {
+      Dialogs.showSnackBar(
+        context,
+        'Something Went Wrong. Check Internet Connection',
+      );
+    });
   }
 
   Future<UserCredential?> _signInWithGoogle() async {
@@ -251,9 +284,7 @@ class _LoginPageState extends State<LoginPage> {
       );
       return await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
-      Dialogs.showSnackBar(
-          context, 'Something Went Wrong Check Internet Connection');
-      return null;
+      throw Exception('No Internet Connection');
     }
   }
 }

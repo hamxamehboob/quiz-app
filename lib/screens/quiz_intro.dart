@@ -30,130 +30,134 @@ class _QuizIntroState extends State<QuizIntro> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: ElevatedButton(
-        child: const Text(
-          "START QUIZ",
-          style: TextStyle(fontSize: 20),
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF7558ff)),
+          child: const Text(
+            "START QUIZ",
+            style: TextStyle(fontSize: 20),
+          ),
+          onPressed: () async {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => QuizPage(
+                          quizId: widget.quizId,
+                        )));
+          },
         ),
-        onPressed: () async {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (_) => QuizPage(
-                        quizId: widget.quizId,
-                      )));
-        },
-      ),
-      appBar: AppBar(
-        title: const Text("Quiz App"),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.only(bottom: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      widget.quizName,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          fontSize: 30, fontWeight: FontWeight.w500),
-                    )
-                  ],
+        appBar: AppBar(
+          backgroundColor: Color(0xFF7558ff),
+          title: const Text("Quiz App"),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.only(bottom: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.quizName,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.w500),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Image.network(
-                widget.quizImgUrl,
-                fit: BoxFit.cover,
-                height: 230,
-                width: MediaQuery.of(context).size.width,
-              ),
-              Container(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      children: [
-                        Icon(Icons.topic_outlined),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          "Related To -",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    Text(
-                      widget.quizTopics,
-                      style: const TextStyle(fontSize: 17),
-                    )
-                  ],
+                Image.network(
+                  widget.quizImgUrl,
+                  fit: BoxFit.cover,
+                  height: 230,
+                  width: MediaQuery.of(context).size.width,
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      children: [
-                        Icon(Icons.topic_outlined),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          "Duration -",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    Text(
-                      "${widget.quizDuration} Minutes",
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(fontSize: 17),
-                    )
-                  ],
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.topic_outlined),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            "Related To -",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      Text(
+                        widget.quizTopics,
+                        style: const TextStyle(fontSize: 17),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      children: [
-                        Icon(Icons.topic_outlined),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Text(
-                          "About Quiz -",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        )
-                      ],
-                    ),
-                    Text(
-                      widget.quizAbout,
-                      style: const TextStyle(fontSize: 17),
-                    )
-                  ],
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.topic_outlined),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            "Duration -",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      Text(
+                        "${widget.quizDuration} Minutes",
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(fontSize: 17),
+                      )
+                    ],
+                  ),
                 ),
-              )
-            ],
+                Container(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Row(
+                        children: [
+                          Icon(Icons.topic_outlined),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text(
+                            "About Quiz -",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      Text(
+                        widget.quizAbout,
+                        style: const TextStyle(fontSize: 17),
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

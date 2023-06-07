@@ -10,12 +10,7 @@ class QuizQuestions {
         .get()
         .then((value) {
       allData = value.docs.map((doc) => doc.data()).toList();
-      // print("ALL DATA ========= ${allData}");
-      print("ALL DATA LENGTH ========= ${allData.length}");
-      // quizData = value.docs.elementAt(0).data();
-      //getting data of every question
     });
-    // print("QUIZ DATA========== ${quizData}");
     return allData;
   }
 }

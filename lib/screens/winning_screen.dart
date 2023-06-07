@@ -25,58 +25,57 @@ class _WinPageState extends State<WinPage> {
 
   void initController() {
     confettiController =
-        ConfettiController(duration: const Duration(seconds: 1));
+        ConfettiController(duration: const Duration(seconds: 5));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Stack(
+    return SafeArea(
+      child: Scaffold(
+          backgroundColor: Colors.white,
+          body: Stack(
             children: [
-              Container(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                    Text("CONGRATULATIONS!",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        )),
-                    Text("YOUR ANSWER IS CORRECT",
-                        style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                        )),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Container(
-                        padding: EdgeInsets.all(20),
-                        child: Image.asset("assets/images/win_image.jpg")),
-                    ElevatedButton(
-                      child: Text("Next"),
-                      onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (_) => HomePage()));
-                      },
-                    )
-                  ])),
+              Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                const Text("CONGRATULATIONS!",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    )),
+                const Text("YOUR ANSWER IS CORRECT",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                    )),
+                const SizedBox(
+                  height: 15,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Container(
+                    padding: const EdgeInsets.all(20),
+                    child: Image.asset("assets/images/win_image.jpg")),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF7558ff)),
+                  child: const Text("Next"),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) => const HomePage()));
+                  },
+                )
+              ]),
               buildConfettiWidget(confettiController, pi / 2),
             ],
-          ),
-        ));
+          )),
+    );
   }
 
   Align buildConfettiWidget(controller, double blastDirection) {
     return Align(
       alignment: Alignment.topCenter,
       child: ConfettiWidget(
-        maximumSize: Size(40, 30),
+        maximumSize: const Size(40, 30),
         shouldLoop: false,
         confettiController: controller,
         blastDirection: blastDirection,
