@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
 import '../helpers/dialogs.dart';
@@ -261,15 +263,21 @@ class _SignUpPageState extends State<SignUpPage> {
         );
       },
     );
+    await Future.delayed(const Duration(milliseconds: 100));
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailtextcontroller.text, password: _pwtextcontroller.text);
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => const HomePage(),
-        ),
-      );
+      // ignore: use_build_context_synchronously
+      QuickAlert.show(
+              context: context,
+              type: QuickAlertType.success,
+              text: "SignUp Sucessfully")
+          .then((value) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => const HomePage()));
+      });
     } catch (e) {
+      // ignore: use_build_context_synchronously
       Navigator.pop(context);
 
       String errorMessage = 'An error occurred. Please try again.';
@@ -283,6 +291,7 @@ class _SignUpPageState extends State<SignUpPage> {
               'Email is already in use. Please choose a different email.';
         }
       }
+      // ignore: use_build_context_synchronously
       Dialogs.showSnackBar(context, errorMessage);
     }
 

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:quiz_app/screens/onboard_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
@@ -218,19 +219,23 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
-
+    await Future.delayed(Duration(milliseconds: 100));
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailtextcontroller.text, password: _pwtextcontroller.text);
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const HomePage(),
-        ),
-      );
-    } catch (e) {
       Navigator.pop(context);
+
+      QuickAlert.show(
+              context: context,
+              type: QuickAlertType.success,
+              text: "Login Sucessfull")
+          .then((value) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => HomePage()));
+      });
+    } catch (e) {
+      Navigator.pop(context); // Dismiss the loading dialog
 
       String errorMessage = 'An error occurred. Please try again.';
 
