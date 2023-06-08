@@ -3,12 +3,12 @@
 Welcome to my Quiz App! Get ready to test your knowledge and have fun with my engaging quizzes. I've built this app using Firebase as the backend and Provider as the state management solution to provide you with a seamless and interactive experience.
 
 # ScreenShots Of Quiz App
-<table>
+<table style="width: 500px;">
   <tr>
     <td>Splash Screen</td>
-     <td>On Board Screen</td>
-     <td>Login Screen</td>
-     <td>SignUp Screen</td>
+    <td>On Board Screen</td>
+    <td>Login Screen</td>
+    <td>SignUp Screen</td>
     <td>Home Screen</td>
     <td>Introduction Screen</td>
     <td>Playing Screen</td>
@@ -17,18 +17,18 @@ Welcome to my Quiz App! Get ready to test your knowledge and have fun with my en
   </tr>
   
   <tr>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/6a3662e1-b884-4a77-8bd7-07d29ffcc096.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/6b1b1c32-cc46-406b-8d39-70e1c33bcdc2.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/15b98aaa-887e-43b8-ad10-77a469a311c6.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/84e5c6a3-7ec7-4284-82aa-b9c76582b513.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/18526553-aba7-4f6c-a187-fad543035d69.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/804ff2f8-74ed-4c4c-93be-8261c0d7a4c1.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/c397bda4-55a2-4782-a065-296f7043c8bb.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/e4f229fe-1e00-4a90-9ecb-f738e5f7b0fd.jpg" width="1000%"></img></td>
-    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/66e784ff-1987-4232-a74d-b0d0e86f282b.jpg" width="1000%"></img></td>
-    
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/6a3662e1-b884-4a77-8bd7-07d29ffcc096.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/6b1b1c32-cc46-406b-8d39-70e1c33bcdc2.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/15b98aaa-887e-43b8-ad10-77a469a311c6.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/84e5c6a3-7ec7-4284-82aa-b9c76582b513.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/18526553-aba7-4f6c-a187-fad543035d69.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/804ff2f8-74ed-4c4c-93be-8261c0d7a4c1.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/c397bda4-55a2-4782-a065-296f7043c8bb.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/e4f229fe-1e00-4a90-9ecb-f738e5f7b0fd.jpg" style="width: 100%;"></td>
+    <td><img src="https://github.com/hamxamehboob/Quiz-App/assets/97390895/66e784ff-1987-4232-a74d-b0d0e86f282b.jpg" style="width: 100%;"></td>
   </tr>
- </table>
+</table>
+
 
 
 ## Features:
