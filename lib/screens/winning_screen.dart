@@ -41,7 +41,7 @@ class _WinPageState extends State<WinPage> {
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     )),
-                const Text("YOUR ANSWER IS CORRECT",
+                const Text("YOUR ANSWERs ARE CORRECT",
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
