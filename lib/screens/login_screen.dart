@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       },
     );
-    await Future.delayed(Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 100));
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailtextcontroller.text, password: _pwtextcontroller.text);
@@ -232,10 +232,10 @@ class _LoginPageState extends State<LoginPage> {
               text: "Login Sucessfull")
           .then((value) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => HomePage()));
+            context, MaterialPageRoute(builder: (_) => const HomePage()));
       });
     } catch (e) {
-      Navigator.pop(context); // Dismiss the loading dialog
+      Navigator.pop(context);
 
       String errorMessage = 'An error occurred. Please try again.';
 

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../screens/quiz_intro.dart';
 
@@ -48,8 +49,8 @@ class HomePageQuizCart extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Stack(
               children: [
-                Image.network(
-                  imageurl,
+                CachedNetworkImage(
+                  imageUrl: imageurl,
                   fit: BoxFit.cover,
                   width: MediaQuery.of(context).size.width,
                 ),

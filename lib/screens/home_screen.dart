@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/firebase_service/auth_service.dart';
 
 import '../firebase_service/home_fire.dart';
 import '../widgets/home_screen_quiz.dart';
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     } else if (snapshot.hasData) {
                       return ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         scrollDirection: Axis.vertical,
                         itemBuilder: (context, index) {
                           return HomePageQuizCart(
