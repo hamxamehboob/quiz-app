@@ -106,7 +106,7 @@ class _QuizPageState extends State<QuizPage> {
           style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFF7558ff)),
           child: const Text(
-            "QUIT GAME",
+            "QUIT QUIZ",
             style: TextStyle(fontSize: 27),
           ),
           onPressed: () {

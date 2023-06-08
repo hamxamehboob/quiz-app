@@ -40,10 +40,6 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                GestureDetector(
-                    onTap: () => Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (_) => const OnBoardPage())),
-                    child: const Icon(Icons.arrow_back_ios)),
                 SizedBox(
                   height: size.height * .03,
                 ),

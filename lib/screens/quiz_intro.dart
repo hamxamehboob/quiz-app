@@ -54,7 +54,7 @@ class _QuizIntroState extends State<QuizIntro> {
         ),
         appBar: AppBar(
           backgroundColor: const Color(0xFF7558ff),
-          title: const Text("Quiz App"),
+          title: Text(widget.quizName),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -65,18 +65,6 @@ class _QuizIntroState extends State<QuizIntro> {
                 Container(
                   width: MediaQuery.of(context).size.width,
                   padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.quizName,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.w500),
-                      )
-                    ],
-                  ),
                 ),
                 Image.network(
                   widget.quizImgUrl,

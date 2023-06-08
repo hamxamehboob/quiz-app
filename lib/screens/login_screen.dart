@@ -37,10 +37,6 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                  onTap: () => Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => OnBoardPage())),
-                  child: Icon(Icons.arrow_back_ios)),
               SizedBox(
                 height: size.height * .03,
               ),

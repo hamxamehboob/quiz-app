@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/firebase_service/auth_service.dart';
 
 import '../firebase_service/home_fire.dart';
 import '../widgets/home_screen_quiz.dart';
@@ -24,6 +23,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFF6949ff),
+          title: const Text("Quiz Page"),
+          centerTitle: true,
+        ),
         body: Padding(
           padding: const EdgeInsets.only(bottom: 20),
           child: SingleChildScrollView(
