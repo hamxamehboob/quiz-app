@@ -38,15 +38,15 @@ Welcome to my Quiz App! Get ready to test your knowledge and have fun with my en
   
 
 ## Features:
-
-1. Splash Screen:
+1.Splash Screen:
 
 * The splash screen appears when the app is launched and displays the app logo or a loading animation.
 
 * It creates an initial loading experience for users while the app initializes.
 
 * After a set duration, it automatically transitions to the onboard screen.
-2. Login and Signup Screens:
+
+2.Login and Signup Screens:
 
 * Users can either log in with their existing credentials or sign up for a new account.
 
@@ -61,6 +61,7 @@ Welcome to my Quiz App! Get ready to test your knowledge and have fun with my en
 * Users can switch between the login and signup screens seamlessly.
 
 3.Home Screen:
+
 * After successful authentication, users are directed to the home screen.
 
 * The home screen displays a list of available quizzes or categories.
@@ -69,7 +70,8 @@ Welcome to my Quiz App! Get ready to test your knowledge and have fun with my en
 
 * Each quiz category or quiz is represented with relevant information such as the title, description, and image.
 
-4. User Progress Tracking Screen:
+4.User Progress Tracking Screen:
+
 * This screen provides users with an overview of their quiz performance and progress.
 
 * Users can view their scores, completion status, and other relevant statistics.
