@@ -1,6 +1,6 @@
 # Quiz App
 
-Welcome to my Quiz App! Get ready to test your knowledge and have fun with my engaging quizzes. I've built this app using Firebase as the backend and Provider as the state management solution to provide you with a seamless and interactive experience.
+Welcome to my Quiz App! Get ready to test your knowledge and have fun with my engaging quizzes. I've built this app using Firebase as the backend and Provider as the state management solution to provide you with a seamless and interactive experience..
 
 # ScreenShots Of Quiz App
 <table style="width: 500px;">
