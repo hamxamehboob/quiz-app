@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/constants/colors.dart';
 import 'package:quiz_app/screens/login_screen.dart';
 import 'package:quiz_app/screens/sign_up_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -45,7 +46,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
               effect: ExpandingDotsEffect(
                 dotColor: Colors.grey,
                 dotWidth: size.width * .03,
-                activeDotColor: const Color(0xFF6949ff),
+                activeDotColor: AppColor.backgroundColor,
                 dotHeight: size.height * .01,
               ),
             ),
@@ -62,7 +63,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
               padding: EdgeInsets.symmetric(
                   horizontal: size.width * .36, vertical: size.height * .014),
               decoration: BoxDecoration(
-                  color: const Color(0xFF6949ff),
+                  color: AppColor.backgroundColor,
                   borderRadius: BorderRadius.circular(20)),
               child: const Text(
                 "GET STARTED",
@@ -87,10 +88,10 @@ class _OnBoardPageState extends State<OnBoardPage> {
               decoration: BoxDecoration(
                   color: const Color(0xFFf0edff),
                   borderRadius: BorderRadius.circular(20)),
-              child: const Text(
+              child: Text(
                 "I ALREADY HAVE AN ACCOUNT",
                 style: TextStyle(
-                    color: Color(0xFF6949ff),
+                    color: AppColor.backgroundColor,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),
               ),

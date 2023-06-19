@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/firebase_service/quiz_questions.dart';
+
 import '../helpers/dialogs.dart';
+import '../service/quiz_questions.dart';
 import 'lost_screen.dart';
 import 'winning_screen.dart';
 
 class QuizPage extends StatefulWidget {
   final String quizId;
 
-  QuizPage({required this.quizId, Key? key}) : super(key: key);
+  const QuizPage({required this.quizId, Key? key}) : super(key: key);
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -32,69 +33,6 @@ class _QuizPageState extends State<QuizPage> {
     setState(() {
       questions = List<Map<String, dynamic>>.from(ques);
     });
-  }
-
-  void checkAnswer(String selectedOption) {
-    final currentQuestion = questions[currentQuestionIndex];
-    final correctAnswer = currentQuestion['correct_answer'];
-
-    if (selectedOption == correctAnswer) {
-      setState(() {
-        if (selectedOption ==
-            questions[currentQuestionIndex]["option1"].toString()) {
-          optionAColor = Colors.green;
-        } else if (selectedOption ==
-            questions[currentQuestionIndex]["option2"].toString()) {
-          optionBColor = Colors.green;
-        } else if (selectedOption ==
-            questions[currentQuestionIndex]["option3"].toString()) {
-          optionCColor = Colors.green;
-        } else if (selectedOption ==
-            questions[currentQuestionIndex]["option4"].toString()) {
-          optionDColor = Colors.green;
-        }
-      });
-
-      Future.delayed(const Duration(seconds: 1), () {
-        if (currentQuestionIndex == questions.length - 1) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (_) => const WinPage()),
-          );
-        } else {
-          setState(() {
-            currentQuestionIndex++;
-            optionAColor = Colors.black.withOpacity(0.4);
-            optionBColor = Colors.black.withOpacity(0.4);
-            optionCColor = Colors.black.withOpacity(0.4);
-            optionDColor = Colors.black.withOpacity(0.4);
-          });
-        }
-      });
-    } else {
-      setState(() {
-        if (selectedOption ==
-            questions[currentQuestionIndex]["option1"].toString()) {
-          optionAColor = Colors.red;
-        } else if (selectedOption ==
-            questions[currentQuestionIndex]["option2"].toString()) {
-          optionBColor = Colors.red;
-        } else if (selectedOption ==
-            questions[currentQuestionIndex]["option3"].toString()) {
-          optionCColor = Colors.red;
-        } else if (selectedOption ==
-            questions[currentQuestionIndex]["option4"].toString()) {
-          optionDColor = Colors.red;
-        }
-      });
-
-      Future.delayed(const Duration(seconds: 1), () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const LoserPage()),
-        );
-      });
-    }
   }
 
   @override
@@ -243,5 +181,68 @@ class _QuizPageState extends State<QuizPage> {
               ),
       ),
     );
+  }
+
+  void checkAnswer(String selectedOption) {
+    final currentQuestion = questions[currentQuestionIndex];
+    final correctAnswer = currentQuestion['correct_answer'];
+
+    if (selectedOption == correctAnswer) {
+      setState(() {
+        if (selectedOption ==
+            questions[currentQuestionIndex]["option1"].toString()) {
+          optionAColor = Colors.green;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option2"].toString()) {
+          optionBColor = Colors.green;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option3"].toString()) {
+          optionCColor = Colors.green;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option4"].toString()) {
+          optionDColor = Colors.green;
+        }
+      });
+
+      Future.delayed(const Duration(seconds: 1), () {
+        if (currentQuestionIndex == questions.length - 1) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (_) => const WinPage()),
+          );
+        } else {
+          setState(() {
+            currentQuestionIndex++;
+            optionAColor = Colors.black.withOpacity(0.4);
+            optionBColor = Colors.black.withOpacity(0.4);
+            optionCColor = Colors.black.withOpacity(0.4);
+            optionDColor = Colors.black.withOpacity(0.4);
+          });
+        }
+      });
+    } else {
+      setState(() {
+        if (selectedOption ==
+            questions[currentQuestionIndex]["option1"].toString()) {
+          optionAColor = Colors.red;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option2"].toString()) {
+          optionBColor = Colors.red;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option3"].toString()) {
+          optionCColor = Colors.red;
+        } else if (selectedOption ==
+            questions[currentQuestionIndex]["option4"].toString()) {
+          optionDColor = Colors.red;
+        }
+      });
+
+      Future.delayed(const Duration(seconds: 1), () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => const LoserPage()),
+        );
+      });
+    }
   }
 }

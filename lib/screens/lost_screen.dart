@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/constants/colors.dart';
 import 'package:quiz_app/screens/home_screen.dart';
 
 class LoserPage extends StatelessWidget {
@@ -36,7 +37,7 @@ class LoserPage extends StatelessWidget {
                       size: 100, color: Colors.black),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF7558ff)),
+                        backgroundColor: AppColor.PurpleColor),
                     child: const Text("Go To Home Page"),
                     onPressed: () {
                       Navigator.pushReplacement(context,

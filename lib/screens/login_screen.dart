@@ -4,9 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:quiz_app/screens/onboard_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
+import '../constants/colors.dart';
 import '../helpers/dialogs.dart';
 import 'home_screen.dart';
 
@@ -61,8 +61,8 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: "Enter your email address",
                       hintStyle: TextStyle(color: Colors.grey),
                       enabledBorder: UnderlineInputBorder(
-                          borderSide:
-                              BorderSide(color: Color(0xFF7558ff), width: 2))),
+                          borderSide: BorderSide(
+                              color: AppColor.PurpleColor, width: 2))),
                 ),
               ),
               SizedBox(
@@ -84,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: "Enter your password",
                       hintStyle: const TextStyle(color: Colors.grey),
                       suffixIcon: IconButton(
-                        color: const Color(0xFF7558ff),
+                        color: AppColor.PurpleColor,
                         icon: Icon(
                           _isObscure ? Icons.visibility : Icons.visibility_off,
                         ),
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       enabledBorder: const UnderlineInputBorder(
                         borderSide:
-                            BorderSide(color: Color(0xFF7558ff), width: 2),
+                            BorderSide(color: AppColor.PurpleColor, width: 2),
                       )),
                 ),
               ),
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: const Text(
                   "Forgot Password?",
                   style: TextStyle(
-                      color: Color(0xFF7558ff),
+                      color: AppColor.PurpleColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                       horizontal: size.width * .36,
                       vertical: size.height * .014),
                   decoration: BoxDecoration(
-                      color: const Color(0xFF6949ff),
+                      color: AppColor.PurpleColor,
                       borderRadius: BorderRadius.circular(20)),
                   child: const Text(
                     "Sign In",
