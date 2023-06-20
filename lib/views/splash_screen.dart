@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:quiz_app/views/onboard_screen.dart';
 
 import '../Utils/auth_wrapper.dart';
+import '../constants/images.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 4)).then(
       (value) => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => const AuthWrapper(),
+          builder: (_) => const OnBoardPage(),
         ),
       ),
     );
@@ -36,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/splash_image.png'),
+              Image.asset(splashScreenImage),
               SizedBox(
                 height: size.height * .03,
               ),

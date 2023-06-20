@@ -32,8 +32,7 @@ flutter:
   assets:
     - assets/images/splash_image.png
     - assets/images/google_icon.png
-    - assets/images/splash_image1.png
-    - assets/images/splash_image2.png
-    - assets/images/splash_image3.png
-    - assets/images/splash_image4.png
+    - assets/images/onboardimage_1.png
+    - assets/images/onboardimage_2.png
+    - assets/images/onboardimage_3.png
     - assets/images/win_image.jpg

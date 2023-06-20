@@ -4,6 +4,8 @@ import 'package:quiz_app/views/login_screen.dart';
 import 'package:quiz_app/views/sign_up_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../constants/images.dart';
+
 class OnBoardPage extends StatefulWidget {
   const OnBoardPage({super.key});
 
@@ -27,9 +29,9 @@ class _OnBoardPageState extends State<OnBoardPage> {
             child: PageView(
               controller: _controller,
               children: [
-                Image.asset("assets/images/splash_image3.png"),
-                Image.asset("assets/images/splash_image2.png"),
-                Image.asset("assets/images/splash_image4.png"),
+                Image.asset(onBoardImage1),
+                Image.asset(onBoardImage2),
+                Image.asset(onBoardImage3),
               ],
             ),
           ),

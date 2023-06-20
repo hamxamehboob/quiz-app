@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:quiz_app/controllers/signup_controller.dart';
 import 'package:quiz_app/views/login_screen.dart';
-import 'package:quiz_app/widgets/google_button.dart';
+import 'package:quiz_app/Utils/google_button.dart';
 
 import '../Utils/dialogs.dart';
 import '../Utils/sign_in_with_google.dart';
@@ -155,7 +156,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 GestureDetector(
                   onTap: () {
                     validate();
-                    signUp();
+                    signUp(_emailtextcontroller.text, _pwtextcontroller.text,
+                        context);
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(
@@ -245,77 +247,5 @@ class _SignUpPageState extends State<SignUpPage> {
     if (_pwKey.currentState!.validate() ||
         _nameKey.currentState!.validate() ||
         _emailKey.currentState!.validate()) {}
-  }
-
-  String? nameValidate(value) {
-    if (value.isEmpty) {
-      return "Please enter a name";
-    } else {
-      return null;
-    }
-  }
-
-  String? emailValidate(value) {
-    if (value.isEmpty) {
-      return "Please enter a email";
-    } else if (!RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9-]+\.[a-zA-Z]+")
-        .hasMatch(value)) {
-      return "Enter Valid Email";
-    } else {
-      return null;
-    }
-  }
-
-  String? pwValidate(value) {
-    if (value.isEmpty) {
-      return "Please enter a password";
-    } else {
-      return null;
-    }
-  }
-
-  void signUp() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-    await Future.delayed(const Duration(milliseconds: 100));
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailtextcontroller.text, password: _pwtextcontroller.text);
-      // ignore: use_build_context_synchronously
-      QuickAlert.show(
-              context: context,
-              type: QuickAlertType.success,
-              text: "SignUp Sucessfully")
-          .then((value) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const HomePage()));
-      });
-    } catch (e) {
-      // ignore: use_build_context_synchronously
-      Navigator.pop(context);
-
-      String errorMessage = 'An error occurred. Please try again.';
-
-      if (e is FirebaseAuthException) {
-        if (e.code == 'weak-password') {
-          errorMessage =
-              'Password is too weak. Please choose a stronger password.';
-        } else if (e.code == 'email-already-in-use') {
-          errorMessage =
-              'Email is already in use. Please choose a different email.';
-        }
-      }
-      // ignore: use_build_context_synchronously
-      Dialogs.showSnackBar(context, errorMessage);
-    }
-
-    setState(() {});
   }
 }
