@@ -37,7 +37,7 @@ class LoserPage extends StatelessWidget {
                       size: 100, color: Colors.black),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.PurpleColor),
+                        backgroundColor: AppColor.purpleColor),
                     child: const Text("Go To Home Page"),
                     onPressed: () {
                       Navigator.pushReplacement(context,

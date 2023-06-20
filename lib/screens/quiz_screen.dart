@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../helpers/dialogs.dart';
+import '../Utils/dialogs.dart';
 import '../service/quiz_questions.dart';
 import 'lost_screen.dart';
 import 'winning_screen.dart';

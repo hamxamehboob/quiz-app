@@ -6,8 +6,9 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
+import '../Utils/sign_in_with_google.dart';
 import '../constants/colors.dart';
-import '../helpers/dialogs.dart';
+import '../Utils/dialogs.dart';
 import 'home_screen.dart';
 
 class LoginPage extends StatefulWidget {
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                       hintStyle: TextStyle(color: Colors.grey),
                       enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(
-                              color: AppColor.PurpleColor, width: 2))),
+                              color: AppColor.purpleColor, width: 2))),
                 ),
               ),
               SizedBox(
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                       hintText: "Enter your password",
                       hintStyle: const TextStyle(color: Colors.grey),
                       suffixIcon: IconButton(
-                        color: AppColor.PurpleColor,
+                        color: AppColor.purpleColor,
                         icon: Icon(
                           _isObscure ? Icons.visibility : Icons.visibility_off,
                         ),
@@ -98,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       enabledBorder: const UnderlineInputBorder(
                         borderSide:
-                            BorderSide(color: AppColor.PurpleColor, width: 2),
+                            BorderSide(color: AppColor.purpleColor, width: 2),
                       )),
                 ),
               ),
@@ -110,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: const Text(
                   "Forgot Password?",
                   style: TextStyle(
-                      color: AppColor.PurpleColor,
+                      color: AppColor.purpleColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 16),
                 ),
@@ -128,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                       horizontal: size.width * .36,
                       vertical: size.height * .014),
                   decoration: BoxDecoration(
-                      color: AppColor.PurpleColor,
+                      color: AppColor.purpleColor,
                       borderRadius: BorderRadius.circular(20)),
                   child: const Text(
                     "Sign In",
@@ -171,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               GoogleButton(route: () {
-                _handleGoogleSignIn();
+                GoogleSignInHelper().handleGoogleSignIn(context);
               }),
             ],
           ),
@@ -247,45 +248,5 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     setState(() {});
-  }
-
-  _handleGoogleSignIn() {
-    Dialogs.showProgressBar(context);
-    _signInWithGoogle().then((value) {
-      if (value != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const HomePage()),
-        );
-      } else {
-        Dialogs.showSnackBar(
-          context,
-          'Something Went Wrong. Check Internet Connection',
-        );
-      }
-    }).catchError((error) {
-      Dialogs.showSnackBar(
-        context,
-        'Something Went Wrong. Check Internet Connection',
-      );
-    });
-  }
-
-  Future<UserCredential?> _signInWithGoogle() async {
-    try {
-      await InternetAddress.lookup('google.com');
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-      return await FirebaseAuth.instance.signInWithCredential(credential);
-    } catch (e) {
-      throw Exception('No Internet Connection');
-    }
   }
 }

@@ -1,15 +1,12 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
-import '../helpers/dialogs.dart';
+import '../Utils/dialogs.dart';
+import '../Utils/sign_in_with_google.dart';
 import 'home_screen.dart';
-import 'onboard_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -206,7 +203,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 GoogleButton(route: () {
-                  _handleGoogleSignIn();
+                  GoogleSignInHelper().handleGoogleSignIn(context);
                 }),
               ],
             ),
@@ -292,45 +289,5 @@ class _SignUpPageState extends State<SignUpPage> {
     }
 
     setState(() {});
-  }
-
-  _handleGoogleSignIn() {
-    Dialogs.showProgressBar(context);
-    _signInWithGoogle().then((value) {
-      if (value != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const HomePage()),
-        );
-      } else {
-        Dialogs.showSnackBar(
-          context,
-          'Something Went Wrong. Check Internet Connection',
-        );
-      }
-    }).catchError((error) {
-      Dialogs.showSnackBar(
-        context,
-        'Something Went Wrong. Check Internet Connection',
-      );
-    });
-  }
-
-  Future<UserCredential?> _signInWithGoogle() async {
-    try {
-      await InternetAddress.lookup('google.com');
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      final GoogleSignInAuthentication? googleAuth =
-          await googleUser?.authentication;
-
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
-      return await FirebaseAuth.instance.signInWithCredential(credential);
-    } catch (e) {
-      throw Exception('No Internet Connection');
-    }
   }
 }

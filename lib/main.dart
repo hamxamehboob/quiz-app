@@ -8,7 +8,7 @@ import 'package:quiz_app/service/auth_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  _initializeFirebase();
+  _intializeFirebaseApp();
   runApp(
     DevicePreview(
       enabled: false,
@@ -22,7 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [Provider<AuthService>(create: (_) => AuthService())],
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ),
+      ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
@@ -31,7 +35,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-_initializeFirebase() async {
+_intializeFirebaseApp() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
