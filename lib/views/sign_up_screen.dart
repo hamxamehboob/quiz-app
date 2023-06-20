@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
+import 'package:quiz_app/views/login_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
 import '../Utils/dialogs.dart';
 import '../Utils/sign_in_with_google.dart';
+import '../constants/colors.dart';
 import 'home_screen.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -170,6 +172,32 @@ class _SignUpPageState extends State<SignUpPage> {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: size.height * 0.01,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Already Have An Account?"),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const LoginPage(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Login",
+                        style: TextStyle(
+                            color: AppColor.purpleColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                    )
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(

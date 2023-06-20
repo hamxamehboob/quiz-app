@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants/colors.dart';
-import 'package:quiz_app/screens/home_screen.dart';
+import 'package:quiz_app/views/home_screen.dart';
 
 class LoserPage extends StatelessWidget {
   const LoserPage({Key? key}) : super(key: key);

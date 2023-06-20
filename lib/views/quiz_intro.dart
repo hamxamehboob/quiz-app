@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/screens/quiz_screen.dart';
+import 'package:quiz_app/views/quiz_screen.dart';
 
 // ignore: must_be_immutable
 class QuizIntro extends StatefulWidget {

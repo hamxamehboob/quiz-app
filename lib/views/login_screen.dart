@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:quiz_app/views/sign_up_screen.dart';
 import 'package:quiz_app/widgets/google_button.dart';
 
 import '../Utils/sign_in_with_google.dart';
@@ -139,6 +137,32 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account?"),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const SignUpPage(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      "SignUp",
+                      style: TextStyle(
+                          color: AppColor.purpleColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  )
+                ],
               ),
               Padding(
                 padding: EdgeInsets.only(

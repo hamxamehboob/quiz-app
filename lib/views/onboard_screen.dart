@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants/colors.dart';
-import 'package:quiz_app/screens/login_screen.dart';
-import 'package:quiz_app/screens/sign_up_screen.dart';
+import 'package:quiz_app/views/login_screen.dart';
+import 'package:quiz_app/views/sign_up_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardPage extends StatefulWidget {

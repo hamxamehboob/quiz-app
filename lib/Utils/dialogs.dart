@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../screens/home_screen.dart';
+import '../views/home_screen.dart';
 
 class Dialogs {
   static void showSnackBar(BuildContext context, String msg) {

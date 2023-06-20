@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../screens/quiz_intro.dart';
+import '../views/quiz_intro.dart';
 
 class HomePageQuizCart extends StatelessWidget {
   final String imageurl;
