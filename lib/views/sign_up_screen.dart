@@ -1,15 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
+
 import 'package:quiz_app/controllers/signup_controller.dart';
 import 'package:quiz_app/views/login_screen.dart';
 import 'package:quiz_app/Utils/google_button.dart';
 
-import '../Utils/dialogs.dart';
 import '../Utils/sign_in_with_google.dart';
 import '../constants/colors.dart';
-import 'home_screen.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
