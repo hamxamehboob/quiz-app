@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:quiz_app/Utils/auth_wrapper.dart';
+import 'package:quiz_app/utils/auth_wrapper.dart';
 
 import '../constants/images.dart';
 

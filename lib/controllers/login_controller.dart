@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickalert/quickalert.dart';
 
-import '../Utils/dialogs.dart';
+import '../utils/dialogs.dart';
 import '../views/home_screen.dart';
 
 void login(String email, String password, BuildContext context) async {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../views/home_screen.dart';
-import 'dialogs.dart';
+import '../utils/dialogs.dart';
 
 class GoogleSignInHelper {
   void handleGoogleSignIn(BuildContext context) {

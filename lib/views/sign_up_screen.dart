@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:quiz_app/controllers/signup_controller.dart';
 import 'package:quiz_app/views/login_screen.dart';
-import 'package:quiz_app/Utils/google_button.dart';
+import 'package:quiz_app/utils/google_button.dart';
 
-import '../Utils/sign_in_with_google.dart';
+import '../controllers/sign_in_with_google.dart';
 import '../constants/colors.dart';
 
 class SignUpPage extends StatefulWidget {

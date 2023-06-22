@@ -17,9 +17,11 @@ class _WinPageState extends State<WinPage> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      initController();
-    });
+    setState(
+      () {
+        initController();
+      },
+    );
     confettiController.play();
   }
 

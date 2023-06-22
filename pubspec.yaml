@@ -20,11 +20,14 @@ dependencies:
   cached_network_image: ^3.2.3
   quickalert: ^1.0.1
   device_preview: ^1.1.0
-
+  json_annotation: ^4.8.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
+  lints: ^2.1.1
+  build_runner: ^2.4.5
+  json_serializable: ^6.7.0
 flutter:
   uses-material-design: true
 

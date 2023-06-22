@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthService(),
         ),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

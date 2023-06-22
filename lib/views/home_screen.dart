@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants/colors.dart';
 import '../service/home_fire.dart';
-import '../Utils/home_screen_quiz.dart';
+import '../utils/home_screen_quiz.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

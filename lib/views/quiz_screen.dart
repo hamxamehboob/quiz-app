@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../Utils/dialogs.dart';
+import '../utils/dialogs.dart';
 import '../service/quiz_questions.dart';
 import 'lost_screen.dart';
 import 'winning_screen.dart';
@@ -79,8 +79,9 @@ class _QuizPageState extends State<QuizPage> {
                   const SizedBox(height: 10),
                   GestureDetector(
                     onTap: () {
-                      checkAnswer(questions[currentQuestionIndex]["option1"]
-                          .toString());
+                      checkAnswer(
+                        questions[currentQuestionIndex]["option1"].toString(),
+                      );
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,
